@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bloco de notas</title>
+    <link rel="stylesheet" th:href="@{css/login-cadastro.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="link-cima">
+            <a th:href="@{/}" class="arcoiris-link">voltar para a página inicial</a>
+        </div>
+        <h1>bloco de notas</h1>
+        <h1>login</h1>
+        <p>Bem-vindo novamente. Faça login para ter acesso as suas notas.</p>
+        <p>Não tem conta? <a th:href="@{/cadastro}" class="arcoiris">Clique aqui</a></p>
+
+        <form th:action="@{/login}" method="post">
+            <div class="input-form">
+                <input type="text" name="nome" placeholder="insira o nome do usuário aqui">
+                <button type="button">usuario</button>
+            </div>
+            <div class="input-form ">
+                <input type="password" name="senha" placeholder="digite sua senha aqui">
+                <button type="button">senha</button>
+            </div>
+
+            <button type="submit" class="botao-diferente">entrar</button>
+        </form>
+
+        <p th:text="${erro}"></p>
+    </div>
+</body>
+</html>

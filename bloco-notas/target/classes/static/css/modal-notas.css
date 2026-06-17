@@ -1,0 +1,211 @@
+/*fontes */
+@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Koulen&family=Moul&family=Oswald:wght@200..700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    line-height: 1;
+}
+
+/*container geral*/
+.container {
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/*fontes*/
+h1 {
+    font-size: 60px;
+    font-family: 'Moul', serif;
+    font-weight: bold;
+}
+
+h2, h3, p, a, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+/*BOTAO*/
+button {
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/*INPUT*/
+input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    font-size: 17px;
+}
+
+/*LINKS EM CIMA*/
+.link-cima {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/*ARCO IRIS PRO BOTAO*/
+.arcoiris {
+    background-color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.arcoiris span {
+    color: white;
+    transition: 0.3s ease;
+}
+
+.arcoiris:hover span {
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet,
+        red
+    );
+    background-size: 400% 100%;
+    animation: arcoiris 7s linear infinite;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes arcoiris {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+/*modal*/
+#modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+#modal .modal-content {
+    background: white;
+    width: 400px;
+    margin: 100px auto;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.espaco-botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.espaco-botoes button:active{
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+
+textarea {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    border: 1px solid black;
+    font-size: 17px;
+    padding: 10px;
+}
+
+::placeholder {
+    font-size: 17px;
+}
+
+/*NOTAS*/
+.notas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.notas > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+    padding: 15px;
+}
+
+
+.notas button {
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.notas button:active{
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+.notas a {
+    text-decoration: none;
+}
+
+.notas h3 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.notas p {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* LINKS COM ARCO IRIS */
+.arcoiris-link:hover {
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet,
+        red
+    );
+
+    background-size: 400% 100%;
+    animation: arcoiris 7s linear infinite;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#search {
+    width: 50%;
+    padding-left: 15px;
+}

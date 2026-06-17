@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bloco de notas</title>
+    <link rel="stylesheet" th:href="@{css/modal-notas.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="link-cima">
+            <a th:href="@{/notas}" class="arcoiris-link">voltar</a>
+            <a th:href="@{/}" class="arcoiris-link">sair</a>
+        </div>
+
+        <h1>notas favoritas</h1>
+
+        <input type="text" id="search" placeholder="pesquisar notas...">
+
+        <p id="mensagem-vazia" th:if="${notas == null or #lists.isEmpty(notas)}">
+            Você ainda não tem notas favoritadas.
+        </p>
+
+        <p id="empty-message" style="display: none;">
+            Nenhuma nota encontrada com esse termo.
+        </p>
+
+        <div class="notas">
+            <div th:each="nota : ${notas}" class="nota">
+                <h3 th:text="${nota.titulo}">Título</h3>
+                <p th:text="${nota.conteudo}">Conteúdo</p>
+
+                <div class="botoes-nota">
+                    <a th:href="@{/favoritar/{id}(id=${nota.id})}">
+                        <button type="button" th:text="${nota.favorita} ? 'desfavoritar' : 'favoritar'"></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const search = document.getElementById("search");
+            const notas = document.querySelectorAll(".nota");
+            const emptyMessage = document.getElementById("empty-message");
+            const mensagemVazia = document.getElementById("mensagem-vazia");
+
+            search.addEventListener("input", function () {
+                let value = this.value.toLowerCase();
+                let visibleCount = 0;
+
+                if (mensagemVazia) {
+                    mensagemVazia.style.display = "none";
+                }
+
+                notas.forEach(nota => {
+                    let texto = nota.innerText.toLowerCase();
+                    if (texto.includes(value)) {
+                        nota.style.display = "block";
+                        visibleCount++;
+                    } else {
+                        nota.style.display = "none";
+                    }
+                });
+
+                if (notas.length > 0) {
+                    emptyMessage.style.display = (visibleCount === 0 && value !== "") ? "block" : "none";
+                }
+                
+                if (value === "" && notas.length === 0 && mensagemVazia) {
+                    mensagemVazia.style.display = "block";
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS usuario(
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    nome VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS nota(
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    conteudo VARCHAR(300) NOT NULL
+);

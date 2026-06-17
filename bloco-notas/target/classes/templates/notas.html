@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bloco de notas</title>
+    <link rel="stylesheet" th:href="@{/css/modal-notas.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="link-cima">
+            <a th:href="@{/favoritos}" class="arcoiris-link">favoritos</a>
+            <a th:href="@{/}" class="arcoiris-link">sair</a>
+        </div>
+        
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h1>minhas notas</h1>
+            <button type="button" onclick="abrirModal()" class="arcoiris"><span>adicionar nota</span></button>
+        </div>
+
+        <input type="text" id="search" placeholder="Pesquisar notas...">
+
+        <p id="empty-message" style="display: none;">
+            Nenhuma nota encontrada com esse termo.
+        </p>
+
+        <div id="modal">
+            <div class="modal-content">
+                <h2 th:text="${modoEdicao} ? 'Editar Nota' : 'Titulo da nota'"> Titulo da nota</h2>
+
+                <form th:action="${modoEdicao} ? @{/atualizar} : @{/notas}" method="post" th:object="${anotacao}">
+
+                    <input type="hidden" th:field="*{id}">
+
+                    <input type="text" th:field="*{titulo}" placeholder="Insira o título aqui" required>
+
+                    <h2 th:text="${modoEdicao} ? 'Editar Conteudo' : 'Conteudo'">Conteúdo</h2>
+                    <textarea th:field="*{conteudo}" placeholder="Conteudo" rows="6" cols="40" required></textarea>
+
+                    <div class="espaco-botoes">
+                        <button type="button" onclick="fecharModal()">cancelar</button>
+                        <button type="submit" th:text="${modoEdicao} ? 'atualizar' : 'salvar'">salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="notas">
+            <div th:each="nota : ${notas}" class="nota">
+
+                <h3 th:text="${nota.titulo}">Título</h3>
+                <p th:text="${nota.conteudo}">Conteúdo</p>
+
+                <div class="botoes-nota">
+                    <a th:href="@{/excluir/{id}(id=${nota.id})}">
+                        <button type="button">excluir</button>
+                    </a>
+
+                    <a th:href="@{/editar/{id}(id=${nota.id})}">
+                        <button type="button">editar</button>
+                    </a>
+
+                    <a th:href="@{/favoritar/{id}(id=${nota.id})}">
+                        <button type="button" th:text="${nota.favorita} ? 'desfavoritar' : 'favoritar'"></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal() {
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function fecharModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        document.getElementById("search").addEventListener("input", function () {
+            let value = this.value.toLowerCase();
+            let notas = document.querySelectorAll(".nota"); 
+            const emptyMessage = document.getElementById("empty-message");
+            let visibleCount = 0;
+
+            notas.forEach(nota => {
+                let texto = nota.innerText.toLowerCase();
+
+                if (texto.includes(value)) {
+                    nota.style.display = "";
+                    visibleCount++;
+                } else {
+                    nota.style.display = "none";
+                }
+            });
+
+            if (notas.length > 0) {
+                emptyMessage.style.display = (visibleCount === 0 && value !== "") ? "block" : "none";
+            }
+        });
+    </script>
+
+    <script th:if="${modoEdicao}">
+        abrirModal();
+    </script>
+
+</body>
+</html>

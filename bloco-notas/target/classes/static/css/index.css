@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Koulen&family=Moul&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    color:black;
+    padding: 0px;
+    margin:0px;
+    line-height: 1;
+}
+
+.container{
+    margin-top: 200px;
+    margin-left: 100px;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+}
+
+p, button, a{
+    color:black;
+    font-family: poppins;
+}
+
+h1{
+    font-size: 60px;
+    font-family: 'Moul', serif;
+    font-weight: bold;
+}
+
+a{
+    margin-top: 10px;
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height:40px;
+    box-shadow: 15px 15px 14.7px rgba(0,0,0,0.25);
+    font-family: poppins;
+    display: inline-block;
+    background-color: white;
+}
+
+a:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
